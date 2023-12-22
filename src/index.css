@@ -11,3 +11,41 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+button {
+    all: unset;
+    background-color: #0052cc;
+    font-weight: 600;
+    line-height: 1.43;
+    color: white;
+    font-size: 16px;
+    padding: 0 16px;
+    border-radius: 3px;
+    height: 35px;
+
+    &:hover {
+        background-color: #0065ff;
+        cursor: pointer;
+    }
+}
+
+button.delete {
+    background-color: red;
+
+    &:hover {
+        background-color: #ff5e5e;
+        cursor: pointer;
+    }
+}
+
+input {
+    all: unset;
+    margin: 0;
+    border: 1px solid #DFE1E6;
+    height: 35px;
+    font-size: 16px;
+    padding: 0 8px;
+    border-radius: 3px;
+    width: 100%;
+    box-sizing: border-box;
+}
