@@ -3,12 +3,24 @@
 }
 
 .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 16px;
     border-bottom: 2px solid #ebecf0;
 
     .title {
         font-size: 20px;
         font-weight: 500;
-        padding: 0 20px;
+    }
+
+    .type-switch {
+        background-color: green;
+        
+        &:hover {
+            background-color: #009b00;
+            cursor: pointer;
+        }
     }
 }
 
@@ -16,6 +28,7 @@
     display: flex;
     flex-direction: column;
     padding: 8px 16px 16px;
+    gap: 8px;
 }
 
 .input-container {
@@ -39,16 +52,15 @@
 .list {
     display: flex;
     flex-direction: column;
-    padding: 0 16px;
 }
 
 .reviewer-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 8px;
+    padding: 0 8px;
 
-    &:nth-of-type(n + 2) {
+    &:nth-of-type(odd) {
         background-color: #e3e3e3;
     }
 
@@ -62,7 +74,6 @@
     flex-wrap: wrap;
     gap: 8px;
     align-items: center;
-    margin-bottom: 8px;
 
     .group {
         display: flex;

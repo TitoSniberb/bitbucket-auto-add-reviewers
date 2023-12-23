@@ -30,11 +30,11 @@ button {
 }
 
 button.delete {
-    background-color: red;
+    color: red;
+    background-color: unset;
 
     &:hover {
-        background-color: #ff5e5e;
-        cursor: pointer;
+        text-decoration: underline;
     }
 }
 

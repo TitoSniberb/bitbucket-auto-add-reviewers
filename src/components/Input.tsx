@@ -2,7 +2,11 @@ import {useStorage} from "../hooks/useStorage";
 import {useEffect, useState} from "react";
 import {Emails} from "../types";
 
-export const Input = () => {
+interface InputProps {
+  selectedInputType: 'email' | 'group'
+}
+
+export const Input = ({selectedInputType} :InputProps) => {
   const [emails, setEmails] = useStorage<Emails>('emails', {}, 'sync')
   const [selectedGroup, setSelectedGroup] = useStorage<string>('selectedGroup', '', 'sync')
 
@@ -32,18 +36,22 @@ export const Input = () => {
   return (
     <div>
       <div className="input-container">
-        <div>
-          <label>Group name</label>
-          <input type="text" value={group} onChange={e => setGroup(e.target.value)}/>
-        </div>
+        {selectedInputType === 'group' &&
+          <>
+            <div>
+              <label>Group name</label>
+              <input type="text" value={group} onChange={e => setGroup(e.target.value)}/>
+            </div>
 
-        <button className='submit' onClick={handleAddGroup}>Add</button>
+            <button className='submit' onClick={handleAddGroup}>Add</button>
+          </>
+        }
       </div>
 
-      {hasGroups &&
+      {selectedInputType === 'email' && hasGroups &&
         <div className="input-container">
           <div>
-            <label>Reviewer email</label>
+            <label>Add a reviewer to the {selectedGroup} group</label>
             <input type="text" value={email} onChange={e => setEmail(e.target.value)}/>
           </div>
 
