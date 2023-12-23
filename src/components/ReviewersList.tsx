@@ -16,11 +16,13 @@ export const ReviewersList = () => {
 
   return (
     <div className='list'>
-      {emails[selectedGroup] && emails[selectedGroup].map(email => <div className='reviewer-container'>
-        <span className='email'>{email}</span>
+      {emails[selectedGroup] && emails[selectedGroup].map(email => (
+        <div className='reviewer-container'>
+          <span className='email'>{email}</span>
 
-        <button className='delete' onClick={() => handleDelete(email)}>Delete</button>
-      </div>)}
+          <button className='delete' onClick={() => handleDelete(email)}>Delete</button>
+        </div>
+      ))}
     </div>
   );
 };

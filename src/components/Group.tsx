@@ -1,12 +1,13 @@
 import {useStorage} from "../hooks/useStorage";
 import {Emails} from "../types";
-import React from "react";
+import React, {Dispatch, SetStateAction} from "react";
 
 interface GroupProps {
   groupName: string
+  setSelectedInputType: Dispatch<SetStateAction<'email' | 'group'>>
 }
 
-export const Group = ({groupName}: GroupProps) => {
+export const Group = ({groupName, setSelectedInputType}: GroupProps) => {
   const [selectedGroup, setSelectedGroup] = useStorage<string>('selectedGroup', '', 'sync')
   const [emails, setEmails] = useStorage<Emails>('emails', {}, 'sync')
 
@@ -16,6 +17,10 @@ export const Group = ({groupName}: GroupProps) => {
 
     delete emailsCopy[groupName]
     setEmails(emailsCopy)
+
+    if (!Object.keys(emailsCopy).length) {
+      setSelectedInputType('group')
+    }
   }
 
   return (

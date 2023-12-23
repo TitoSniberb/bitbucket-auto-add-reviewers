@@ -8,7 +8,13 @@ import {useState} from "react";
 
 function App() {
   const [emails] = useStorage<Emails>('emails', {}, 'sync')
-  const [selectedInputType, setSelectedInputType] = useState<'email' | 'group'>('email');
+  const [selectedInputType, setSelectedInputType] = useState<'email' | 'group'>('group');
+
+  const handleChangeInputType = () => {
+    if (!!Object.keys(emails).length) {
+      setSelectedInputType(selectedInputType === 'email' ? 'group' : 'email')
+    }
+  }
 
   return (
     <div className='container'>
@@ -17,7 +23,7 @@ function App() {
 
         <button
           className='type-switch'
-          onClick={() => setSelectedInputType(selectedInputType === 'email' ? 'group' : 'email')}
+          onClick={handleChangeInputType}
         >
           Add {selectedInputType === 'email' ? 'email' : 'group'}
         </button>
@@ -29,6 +35,7 @@ function App() {
             <Group
               key={index}
               groupName={key}
+              setSelectedInputType={setSelectedInputType}
             />
             ))}
         </div>
@@ -36,7 +43,10 @@ function App() {
         <Input selectedInputType={selectedInputType} />
 
         {selectedInputType === 'email' &&
-          <ReviewersList />
+          <>
+            <ReviewersList />
+            <button>Add these reviewers to the PR</button>
+          </>
         }
       </div>
     </div>
