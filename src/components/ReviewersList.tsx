@@ -1,8 +1,9 @@
 import {useStorage} from "../hooks/useStorage";
 import {Emails} from "../types";
 
-export const ReviewersList = ({selectedGroup}) => {
+export const ReviewersList = () => {
   const [emails, setEmails] = useStorage<Emails>('emails', {}, 'sync')
+  const [selectedGroup] = useStorage<string>('selectedGroup', '', 'sync')
 
   const handleDelete = (selectedEmail: string) => {
     setEmails(prevState =>

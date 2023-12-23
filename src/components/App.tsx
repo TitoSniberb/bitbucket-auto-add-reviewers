@@ -1,17 +1,33 @@
 import './App.css'
 import {Input} from "./Input";
 import {ReviewersList} from "./ReviewersList";
-import {useState} from "react";
+import {useStorage} from "../hooks/useStorage";
+import {Emails} from "../types";
+import {Group} from "./Group";
 
 function App() {
-  const [selectedGroup, setSelectedGroup] = useState('');
+  const [emails] = useStorage<Emails>('emails', {}, 'sync')
 
   return (
     <div className='container'>
+      <div className='header-container'>
+        <h2 className='title'>Add reviewers</h2>
+      </div>
 
-      <Input selectedGroup={selectedGroup} setSelectedGroup={setSelectedGroup} />
+      <div className="body">
+        <div className='group-list'>
+          {Object.entries(emails).map(([key], index) => (
+            <Group
+              key={index}
+              groupName={key}
+            />
+            ))}
+        </div>
 
-      <ReviewersList selectedGroup={selectedGroup} setSelectedGroup={setSelectedGroup} />
+        <Input />
+
+        <ReviewersList />
+      </div>
     </div>
   )
 }

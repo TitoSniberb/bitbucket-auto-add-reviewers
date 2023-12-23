@@ -1,14 +1,9 @@
 .container {
     width: 400px;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    padding: 0 0 16px;
 }
 
-.title-container {
+.header-container {
     border-bottom: 2px solid #ebecf0;
-    margin-bottom: 16px;
 
     .title {
         font-size: 20px;
@@ -17,11 +12,16 @@
     }
 }
 
+.body {
+    display: flex;
+    flex-direction: column;
+    padding: 8px 16px 16px;
+}
+
 .input-container {
     display: flex;
     gap: 8px;
     align-items: end;
-    padding: 0 16px;
 
     > div {
         flex: 1;
@@ -52,7 +52,7 @@
         background-color: #e3e3e3;
     }
 
-    & .email {
+    &.email {
         font-size: 14px;
     }
 }
@@ -62,10 +62,25 @@
     flex-wrap: wrap;
     gap: 8px;
     align-items: center;
+    margin-bottom: 8px;
 
     .group {
+        display: flex;
+        gap: 8px;
         border-radius: 10px;
-        background-color: grey;
+        background-color: #cecece;
         padding: 8px;
+        color: black;
+        font-size: 14px;
+
+        &:hover {
+            background-color: #bbbbbb;
+            cursor: pointer;
+        }
+
+        &.selected {
+            background-color: #0065ff;
+            color: white;
+        }
     }
 }

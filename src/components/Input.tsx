@@ -2,8 +2,9 @@ import {useStorage} from "../hooks/useStorage";
 import {useEffect, useState} from "react";
 import {Emails} from "../types";
 
-export const Input = ({ selectedGroup, setSelectedGroup }) => {
+export const Input = () => {
   const [emails, setEmails] = useStorage<Emails>('emails', {}, 'sync')
+  const [selectedGroup, setSelectedGroup] = useStorage<string>('selectedGroup', '', 'sync')
 
   const [email, setEmail] = useState('');
   const [group, setGroup] = useState('');
@@ -20,27 +21,16 @@ export const Input = ({ selectedGroup, setSelectedGroup }) => {
   const handleAddGroup = () => {
     const groups = Object.keys(emails)
 
-    console.log(groups, group)
     if (!groups.includes(group)) {
       setEmails(prevState => ({ ...prevState, [group]: []}))
       setGroup('')
+
+      !groups.length && setSelectedGroup(group)
     }
   }
 
-  console.log(emails)
-
   return (
     <div>
-      <div className='title-container'>
-        <h2 className='title'>Add reviewers</h2>
-      </div>
-
-      <div className='group-list'>
-        {Object.entries(emails).map(([key]) => (
-          <span className='group'>{key}</span>
-        ))}
-      </div>
-
       <div className="input-container">
         <div>
           <label>Group name</label>
@@ -50,14 +40,16 @@ export const Input = ({ selectedGroup, setSelectedGroup }) => {
         <button className='submit' onClick={handleAddGroup}>Add</button>
       </div>
 
-      {/*<div className="input-container">
-        <div>
-          <label>Reviewer email</label>
-          <input type="text" value={email} onChange={e => setEmail(e.target.value)}/>
-        </div>
+      {hasGroups &&
+        <div className="input-container">
+          <div>
+            <label>Reviewer email</label>
+            <input type="text" value={email} onChange={e => setEmail(e.target.value)}/>
+          </div>
 
-        <button className='submit' onClick={handleAddReviewer}>Add</button>
-      </div>*/}
+          <button className='submit' onClick={handleAddReviewer}>Add</button>
+        </div>
+      }
     </div>
   );
 };
