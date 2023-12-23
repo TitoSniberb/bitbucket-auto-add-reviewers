@@ -1,1 +1,1 @@
-export type Emails = string[]
+export type Emails = { [key: string]: string[] }

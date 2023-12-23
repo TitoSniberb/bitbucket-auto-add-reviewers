@@ -56,3 +56,16 @@
         font-size: 14px;
     }
 }
+
+.group-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+
+    .group {
+        border-radius: 10px;
+        background-color: grey;
+        padding: 8px;
+    }
+}
