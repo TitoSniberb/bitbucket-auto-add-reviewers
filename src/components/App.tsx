@@ -45,7 +45,7 @@ function App() {
         {selectedInputType === 'email' &&
           <>
             <ReviewersList />
-            <button>Add these reviewers to the PR</button>
+            <button onClick={() => null}>Add these reviewers to the PR</button>
           </>
         }
       </div>
